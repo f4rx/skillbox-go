@@ -18,47 +18,47 @@ func main() {
 	var input string
 	fmt.Println("Загадайте число от 1 до 10 (включительно). Дальше программа будет пробовать угадать.")
 	fmt.Println("Если угадала - напишите !, если меньше <, если больше >")
-	fmt.Printf("Это число 5 ? ")
-	fmt.Scan(&input)
-	if input == "<" {
-		fmt.Printf("Это число 2 ? ")
+
+	startHightNumber := 10
+	startLowNumber := 1
+	hightNumber := startHightNumber
+	lowNumber := startLowNumber
+	guessNumber := hightNumber / 2
+
+	for {
+		fmt.Printf("Это число %d ? ", guessNumber)
 		fmt.Scan(&input)
+		if guessNumber < startLowNumber || guessNumber > startHightNumber {
+			fmt.Println("Вы мухлюете =)")
+			return
+		}
+
+		// fmt.Printf("DEBUG, ! guessNumber=%d, lowNumber=%d, hightNumber=%d\n", guessNumber, lowNumber, hightNumber)
+
 		if input == "<" {
-			fmt.Println("Тогда это число 1")
+			hightNumber = guessNumber
+			if (guessNumber+lowNumber+1)/2 >= hightNumber {
+				guessNumber--
+			} else {
+				guessNumber = (guessNumber + lowNumber + 1) / 2
+			}
 		} else if input == ">" {
-			fmt.Printf("Это число 3 ? ")
-			fmt.Scan(&input)
-			if input == ">" {
-				fmt.Println("Тогда это число 4")
+			lowNumber = guessNumber
+			if (hightNumber+guessNumber+1)/2 <= lowNumber {
+				guessNumber++
 			} else {
-				fmt.Println("Угадали с третьей попытки")
+				guessNumber = (hightNumber + guessNumber + 1) / 2
 			}
+		} else if input == "!" {
+			fmt.Println("Ура, угадали")
+			return
 		} else {
-			fmt.Println("Угадали со второй попытки")
+			fmt.Println("Такая команда не известна")
+			return
 		}
-	} else if input == ">" {
-		fmt.Printf("Это число 8 ? ")
-		fmt.Scan(&input)
-		if input == ">" {
-			fmt.Printf("Это число 9 ? ")
-			fmt.Scan(&input)
-			if input == "!" {
-				fmt.Println("Угадали с третьей попытки")
-			} else {
-				fmt.Println("Тогда это число 10")
-			}
-		} else if input == "<" {
-			fmt.Printf("Это число 6 ? ")
-			fmt.Scan(&input)
-			if input == "!" {
-				fmt.Println("Угадали с третьей попытки")
-			} else {
-				fmt.Println("Тогда это число 7")
-			}
-		} else {
-			fmt.Println("Угадали со второй пыпытки")
-		}
-	} else {
-		fmt.Println("Ура, угадали с первого раза")
+
+		// fmt.Printf("DEBUG, guessNumber=%d, lowNumber=%d, hightNumber=%d\n", guessNumber, lowNumber, hightNumber)
+
 	}
+
 }
