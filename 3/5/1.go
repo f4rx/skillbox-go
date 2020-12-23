@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func main(){
+func main() {
 
 	var planet, star, ranger string
 	var money int

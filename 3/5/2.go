@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func main(){
+func main() {
 	busStop1 := "Улица смешное название 1"
 	busStop2 := "Улица смешное название 2"
 	busStop3 := "Улица смешное название 3"
@@ -15,15 +15,14 @@ func main(){
 	passengersExitedCount := 0
 	passengersEnteredCount := 0
 
-
 	fmt.Println("*Имитация маршртутки*")
 	// Step 1
 	fmt.Printf("Прибываем на остановку `%s`. В салоне пассажиров: %d\n", busStop1, passengersCount)
 	/*
-	понятно что на первой остановке не может никто выйти, т.к. 0 в салоне
-	fmt.Print("Сколько пассажиров вышло на остановке? ")
-	fmt.Scan(&passengersExitedCount)
-	passengersCount -= passengersExitedCount
+		понятно что на первой остановке не может никто выйти, т.к. 0 в салоне
+		fmt.Print("Сколько пассажиров вышло на остановке? ")
+		fmt.Scan(&passengersExitedCount)
+		passengersCount -= passengersExitedCount
 	*/
 	fmt.Print("Сколько пассажиров зашло на остановке? ")
 	fmt.Scan(&passengersEnteredCount)
@@ -85,6 +84,5 @@ func main(){
 	fmt.Printf("Налоги: %.2f руб.\n", taxExpenditure)
 	fmt.Printf("Расходы на ремонт машины: %.2f руб.\n", carRepairExpenditure)
 	fmt.Printf("Прибыль: %.2f руб.\n", profit)
-
 
 }
