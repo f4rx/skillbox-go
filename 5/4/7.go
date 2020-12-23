@@ -34,7 +34,7 @@ func main() {
 
 	if c1 == c4 && c2 == c3 {
 		fmt.Println("Зеркальнй номер")
-	} else if c1 + c2 == c3 + c4 {
+	} else if c1+c2 == c3+c4 {
 		fmt.Println("Счастливый номер")
 	} else {
 		fmt.Println("Обычный номер")

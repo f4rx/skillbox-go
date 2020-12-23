@@ -30,7 +30,7 @@ func main() {
 	fmt.Print("Введите c: ")
 	fmt.Scan(&c)
 
-	d := b * b - 4 * a * c
+	d := b*b - 4*a*c
 
 	if d < 0 {
 		fmt.Println("Корней нет")
@@ -38,8 +38,8 @@ func main() {
 		x := -b / (2.0 * a)
 		fmt.Printf("У уравнения один корень - %.2f\n", x)
 	} else {
-		x1 := (-b + math.Sqrt(d) ) / (2 * a)
-		x2 := (-b - math.Sqrt(d) ) / (2 * a)
+		x1 := (-b + math.Sqrt(d)) / (2 * a)
+		x2 := (-b - math.Sqrt(d)) / (2 * a)
 		fmt.Printf("У уравнения 2 кореня\n")
 		fmt.Printf("x1 = %.2f, x2 = %.2f\n", x1, x2)
 	}

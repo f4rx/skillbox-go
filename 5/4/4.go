@@ -4,7 +4,7 @@
 
 Что нужно сделать
 
-Программное обеспечение банкоматов постоянно решает задачу, как имеющимися купюрами сформировать сумму, введенную пользователем. Давайте попробуем решить похожую задачу, и определить, сможет ли пользователь заплатить за товар без сдачи или нет. Для этого он будет вводить стоимость товара и номиналы трех монет. 
+Программное обеспечение банкоматов постоянно решает задачу, как имеющимися купюрами сформировать сумму, введенную пользователем. Давайте попробуем решить похожую задачу, и определить, сможет ли пользователь заплатить за товар без сдачи или нет. Для этого он будет вводить стоимость товара и номиналы трех монет.
 
 
 */
@@ -33,18 +33,18 @@ func main() {
 
 	withoutChange := false
 
-	if coin1 + coin2 + coin3 < total {
+	if coin1+coin2+coin3 < total {
 		fmt.Println("Ваших средств не хватает на покупку")
 		return
 	}
 
-	if coin1 + coin2 + coin3 == total {
+	if coin1+coin2+coin3 == total {
 		withoutChange = true
-	} else if coin1 + coin2 == total {
+	} else if coin1+coin2 == total {
 		withoutChange = true
-	} else if coin1 + coin3 == total {
+	} else if coin1+coin3 == total {
 		withoutChange = true
-	} else if coin2 + coin3 == total {
+	} else if coin2+coin3 == total {
 		withoutChange = true
 	} else if coin1 == total || coin2 == total || coin3 == total {
 		withoutChange = true
