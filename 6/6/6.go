@@ -17,6 +17,9 @@ const directionStop = 4
 
 func main() {
 
+	// Заполняем количество людей на этажах
+	// Одно из условий, что в лифт может войти 2 человека, т.е. если на этаже 3 челочека
+	// То зайти могут только 2, а 1 останется ждать следующий лифт
 	var floors [floorsCount]int
 	floors[3] = 1
 	floors[6] = 1
@@ -28,7 +31,7 @@ func main() {
 	fmt.Printf("%v\n", getHighFloor(floors))
 
 	for {
-		fmt.Printf("%v\n", floors)
+		fmt.Printf("Люди на этажах в начале цикла: %v\n", floors)
 
 		if direction == directionUp {
 			goToFloor := getHighFloor(floors)
