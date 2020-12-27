@@ -6,7 +6,7 @@ import (
 
 func main() {
 	lineCount := 0
-	fmt.Print("Введите размер строк: ")
+	fmt.Print("Введите количество строк: ")
 	fmt.Scan(&lineCount)
 
 	maxLineSize := lineCount*2 - 1
