@@ -6,25 +6,25 @@ import (
 
 func main() {
 	var canChange bool
-	income := []int{5,5,5,10,20}
+	income := []int{5, 5, 5, 10, 20}
 	fmt.Printf("Входящая последовательность %v\n", income)
 	canChange = lemonadeChange(income)
 	fmt.Println(canChange)
 	fmt.Println()
 
-	income = []int{10,10}
+	income = []int{10, 10}
 	fmt.Printf("Входящая последовательность %v\n", income)
 	canChange = lemonadeChange(income)
 	fmt.Println(canChange)
 	fmt.Println()
 
-	income = []int{5,5,10,10,20}
+	income = []int{5, 5, 10, 10, 20}
 	fmt.Printf("Входящая последовательность %v\n", income)
 	canChange = lemonadeChange(income)
 	fmt.Println(canChange)
 }
 
-func lemonadeChange(bills []int) bool  {
+func lemonadeChange(bills []int) bool {
 	var bank map[int]int
 	bank = make(map[int]int)
 	bank[5] = 0
