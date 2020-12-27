@@ -7,39 +7,35 @@ import (
 func main() {
 	var dayShortName string
 	fmt.Print("Введите будний день в короткой форме (пн, вт, ср, чт, пт): ")
+	fmt.Scan(&dayShortName)
 
-	var dayNumer int
+	dayNumberMap := map[string]int{
+		"пн": 0,
+		"вт": 1,
+		"ср": 2,
+		"чт": 3,
+		"пт": 4,
+	}
 
-	switch fmt.Scan(&dayShortName); dayShortName {
-	case "пн":
-		dayNumer = 0
-	case "вт":
-		dayNumer = 1
-	case "ср":
-		dayNumer = 2
-	case "чт":
-		dayNumer = 3
-	case "пт":
-		dayNumer = 4
-	default:
+	if _, ok := dayNumberMap[dayShortName]; !ok {
 		fmt.Println("Неверный день недели")
 		return
 	}
 
 	switch {
-	case dayNumer <= 0:
+	case dayNumberMap[dayShortName] <= 0:
 		fmt.Println("Понедельник")
 		fallthrough
-	case dayNumer <= 1:
+	case dayNumberMap[dayShortName] <= 1:
 		fmt.Println("Вторник")
 		fallthrough
-	case dayNumer <= 2:
+	case dayNumberMap[dayShortName] <= 2:
 		fmt.Println("Среда")
 		fallthrough
-	case dayNumer <= 3:
+	case dayNumberMap[dayShortName] <= 3:
 		fmt.Println("Четверг")
 		fallthrough
-	case dayNumer <= 4:
+	case dayNumberMap[dayShortName] <= 4:
 		fmt.Println("Тяпница")
 	}
 }
