@@ -58,11 +58,11 @@ func lemonadeChange(bills []int) bool {
 		}
 	}
 
-	if !canChange {
+	if canChange {
+		fmt.Printf("Купюры в конце %v\n", bank)
+	} else {
 		fmt.Printf("Предалагаемая курюра: %d\n", lastBill)
 		fmt.Printf("Купюры в кассе %v\n", bank)
-	} else {
-		fmt.Printf("Купюры в конце %v\n", bank)
 	}
 
 	return canChange
