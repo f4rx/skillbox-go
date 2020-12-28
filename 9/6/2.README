@@ -1,0 +1,12 @@
+
+
+
+	// fmt.Printf("MinInt32\t%d\n",math.MinInt32)
+	// fmt.Printf("MinInt16\t%d\n",math.MinInt16)
+	// fmt.Printf("MinInt8\t\t%d\n",math.MinInt8)
+	// fmt.Printf("MaxInt8\t\t%d\n",math.MaxInt8)
+	// fmt.Printf("MaxUint8\t%d\n",math.MaxUint8)
+	// fmt.Printf("MaxInt16\t%d\n",math.MaxInt16)
+	// fmt.Printf("MaxUint16\t%d\n",math.MaxUint16)
+	// fmt.Printf("MaxInt32\t%d\n",math.MaxInt32)
+	// fmt.Printf("MaxUint32\t%d\n",math.MaxUint32)
