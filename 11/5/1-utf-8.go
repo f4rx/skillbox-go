@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"unicode/utf8"
 )
 
 func main() {
@@ -19,15 +20,11 @@ func main() {
 		if i < 0 {
 			break
 		}
-		tmpS := s[0:i]
-		for j, runeValue := range tmpS {
-			if j > 0 {
-				break
-			}
-			if strings.ToUpper(string(runeValue)) == string(runeValue) {
-				c++
-				fmt.Println(string(runeValue), runeValue)
-			}
+		runeValue, _ := utf8.DecodeRuneInString(s[:i])
+		// fmt.Println(s[0:1], s[0:i])
+		fmt.Println(string(runeValue), runeValue)
+		if strings.ToUpper(string(runeValue)) == string(runeValue) {
+			c++
 		}
 		s = s[i+1:]
 	}

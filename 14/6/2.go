@@ -8,11 +8,11 @@ func main() {
 	var n int
 	fmt.Print("Введите число: ")
 	fmt.Scan(&n)
-	fmt.Println(evenOdd(n))
+	fmt.Println(isEven(n))
 
 }
 
-func evenOdd(n int) bool {
+func isEven (n int) bool {
 	if n%2 == 0 {
 		return true
 	} else {
