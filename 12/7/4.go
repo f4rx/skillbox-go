@@ -28,7 +28,6 @@ func main() {
 	// Если мы не переоткрываем файл - то можем записывать в файл, т.к. в уже открытом дескрипторе права не меняются
 	file.Close()
 
-
 	file, err = os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		fmt.Printf("Собственно ошибка, но при открытие файла, а не записи! Err: %v\n", err)
@@ -41,5 +40,3 @@ func main() {
 	fmt.Printf("Запись в файл\n")
 	fmt.Fprintln(file, "ololo")
 }
-
-
