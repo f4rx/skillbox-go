@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
+	"io/ioutil"
 )
 
 const fileName = "lesson2.log"
@@ -17,28 +17,18 @@ func main() {
 	}
 	defer file.Close()
 
-	// Ваариант 1
+	// Ваариант 1, простой
 	fileStat, err := file.Stat()
 	if err != nil {
 		panic(err)
 	}
+	fmt.Printf("Размер файла %s _%d_ байт (из file.Stat())\n", fileName, fileStat.Size())
 
-	message1 := make([]byte, fileStat.Size())
-
-	if _, err = file.Read(message1); err != nil {
-		panic(err)
-	}
-
-	fmt.Printf("Размер файла %s _%d_ байт (из file.Stat()). Прочитан целиком file.Read(message1) \n", fileName, fileStat.Size())
-	fmt.Printf("%s\n", message1)
-
-	file.Seek(0, 0) // Возвращаем позицию в 0
-	// Вариант когда не знаем размер файла
-	message2 := make([]byte, 0)
+	// Ваариант 2 с побайтовым чтением
 	counter := 0
 	for {
-		buf := make([]byte, 10) // у меня на тесте файл 48 байт, 10 оптимально для теста, в реальности надо килобайта 4 наверно делать
-		n, err := file.Read(buf)
+		b := make([]byte, 10) // у меня на тесте файл 48 байт, 10 оптимально для теста, в реальности надо килобайта 4 наверно делать
+		n, err := file.Read(b)
 
 		if err != nil {
 			if err != io.EOF {
@@ -52,18 +42,15 @@ func main() {
 		}
 		// fmt.Println(b)
 		counter += n
-		message2 = append(message2, buf...)
 	}
 	fmt.Printf("Размер файла %s _%d_ байт при побайтовом чтение (file.Read()))\n", fileName, counter)
-	fmt.Printf("%s\n", message2)
 
-	// Вариант 2 с io/ioutil (Задание 6.2)
+	// Вариант 3 с io/ioutil (Задание 6.2)
 	fileAll, err := ioutil.ReadFile(fileName)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Printf("Размер файла %s _%d_ байт при чтение файла целиком в память с ioutil.ReadFile()\n", fileName, len(fileAll))
-	fmt.Printf("%s\n", fileAll)
 }
 
 /*
