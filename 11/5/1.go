@@ -14,7 +14,7 @@ func main() {
 	s = s + " "
 	c := 0
 	for {
-		i := strings.Index(s, " ");
+		i := strings.Index(s, " ")
 		if i < 0 {
 			break
 		}

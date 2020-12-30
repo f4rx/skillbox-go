@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -12,7 +12,7 @@ func main() {
 	// s := ""
 
 	sArr := strings.Split(s, " ")
-	for _, v  := range sArr {
+	for _, v := range sArr {
 		i, err := strconv.Atoi(v)
 		if err != nil {
 			continue
