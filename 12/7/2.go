@@ -22,7 +22,7 @@ func main() {
 	fmt.Printf("Вводите строки, когда надоест напечатайте \"выход\"\n")
 
 	// https://stackoverflow.com/questions/34647039/how-to-use-fmt-scanln-read-from-a-string-separated-by-spaces
-	// Не нашёл другого способо как читать строчку из консоли целиком, scanln не работает
+	// Не нашёл другого способа как читать строчку из консоли целиком, scanln не работает
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		inputLine := scanner.Text()

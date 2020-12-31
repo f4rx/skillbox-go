@@ -17,7 +17,7 @@ func main() {
 	}
 	defer file.Close()
 
-	// Ваариант 1
+	// Вариант 1 - зная размер файла читаем его в память целиком
 	fileStat, err := file.Stat()
 	if err != nil {
 		panic(err)
@@ -33,7 +33,7 @@ func main() {
 	fmt.Printf("%s\n", message1)
 
 	file.Seek(0, 0) // Возвращаем позицию в 0
-	// Вариант когда не знаем размер файла
+	// Вариант 2 когда не знаем размер файла. Можно использовать при каком-то поиске в файле, не загружая ОЗУ
 	message2 := make([]byte, 0)
 	counter := 0
 	for {
@@ -57,7 +57,7 @@ func main() {
 	fmt.Printf("Размер файла %s _%d_ байт при побайтовом чтение (file.Read()))\n", fileName, counter)
 	fmt.Printf("%s\n", message2)
 
-	// Вариант 2 с io/ioutil (Задание 6.2)
+	// Вариант 3 с io/ioutil (Задание 6.2)
 	fileAll, err := ioutil.ReadFile(fileName)
 	if err != nil {
 		panic(err)
