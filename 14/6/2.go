@@ -13,9 +13,5 @@ func main() {
 }
 
 func isEven (n int) bool {
-	if n%2 == 0 {
-		return true
-	} else {
-		return false
-	}
+	return n%2 == 0
 }
