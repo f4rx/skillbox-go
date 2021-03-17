@@ -1,0 +1,18 @@
+
+{
+    // Use IntelliSense to learn about related properties. 
+         // Hover to see a description of an existing property.
+         // For more information, please visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${relativeFileDirname}",
+            "env": {},
+            "args": []
+        }
+    ]
+}
