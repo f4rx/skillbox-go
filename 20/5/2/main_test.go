@@ -57,3 +57,66 @@ func TestMultipleMatrix2(t *testing.T) {
 
 	assert.Equal(t, expectedResult, currentResult, "The two numbers should be the same.")
 }
+
+func TestMultipleCustomMatrix(t *testing.T) {
+	// ##############
+	// Test1
+	// ###############
+	t1m1 := [][]int{
+		{1, 2},
+		{1, 2},
+	}
+
+	expectedResult1 := [][]int{
+		{3, 6},
+		{3, 6},
+	}
+
+	currentResult1, err := multipleCustomMatrix(t1m1, t1m1)
+	if assert.NoError(t, err) {
+		assert.Equal(t, expectedResult1, currentResult1, "The two matrix should be the same.")
+	}
+
+	// ##############
+	// Test2
+	// ###############
+	t2m1 := [][]int{
+		{1, 2},
+		{3, 4},
+		{2, 2},
+	}
+
+	t2m2 := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+	}
+
+	expectedResult2 := [][]int{
+		{9, 12, 15},
+		{19, 26, 33},
+		{10, 14, 18},
+	}
+
+	currentResult2, err := multipleCustomMatrix(t2m1, t2m2)
+	if assert.NoError(t, err) {
+		assert.Equal(t, expectedResult2, currentResult2, "The two matrix should be the same.")
+	}
+
+	// ##############
+	// Test3
+	// ###############
+	t3m1 := [][]int{
+		{1, 2},
+		{3, 4},
+		{2, 2},
+	}
+
+	t3m2 := [][]int{
+		{1, 2, 3},
+	}
+
+	currentResult3, err := multipleCustomMatrix(t3m1, t3m2)
+	if assert.Error(t, err) {
+		assert.Nil(t, currentResult3)
+	}
+}
