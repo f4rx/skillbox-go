@@ -32,10 +32,13 @@ func findIndex(arr []int, searchNumer int) int {
 	right := len(arr)
 	middle := len(arr) / 2
 
+	if searchNumer < arr[0] || searchNumer > arr[len(arr)-1] {
+		return -1
+	}
+
 	for {
 		// fmt.Println(left, right, middle)
-		//nolint:gocritic
-		if left == middle || middle == right || searchNumer < arr[0] || searchNumer > arr[len(arr)-1] {
+		if left == middle || middle == right { //nolint:gocritic
 			return -1
 		} else if arr[middle] == searchNumer {
 			return checkLeftIndex(arr, middle, searchNumer)
