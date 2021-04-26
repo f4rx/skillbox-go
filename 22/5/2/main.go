@@ -53,13 +53,11 @@ func findIndex(arr []int, searchNumer int) int {
 }
 
 func checkLeftIndex(arr []int, position, value int) int {
-	for {
-		if position == 0 { //nolint:gocritic
-			return position
-		} else if arr[position-1] == value {
-			position--
-		} else {
-			return position
-		}
+	if position == 0 {
+		return position
+	} else if arr[position-1] == value {
+		return checkLeftIndex(arr, position-1, value)
 	}
+
+	return position
 }
