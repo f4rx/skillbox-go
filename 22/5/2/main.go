@@ -19,7 +19,7 @@ func init() { //nolint:gochecknoinits
 	_, exists := os.LookupEnv("DEBUG")
 	if exists {
 		log.SetLevel(log.InfoLevel)
-		log.Info("Debug is ebabled")
+		log.Info("Debug is enabled")
 	} else {
 		log.SetLevel(log.WarnLevel)
 	}
