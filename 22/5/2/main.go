@@ -3,18 +3,35 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"os"
 	"sort"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
-const size = 10
+const (
+	arraySize    = 12
+	maxRandomNum = 7
+)
+
+func init() { //nolint:gochecknoinits
+	_, exists := os.LookupEnv("DEBUG")
+	if exists {
+		log.SetLevel(log.InfoLevel)
+		log.Info("Debug is ebabled")
+	} else {
+		log.SetLevel(log.WarnLevel)
+	}
+}
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
-	arr := make([]int, size)
+	arr := make([]int, arraySize)
 	for i := range arr {
-		arr[i] = rand.Intn(7) //nolint:gosec
+		arr[i] = rand.Intn(maxRandomNum) //nolint:gosec
 	}
+
 	fmt.Println(arr)
 	sort.Ints(arr)
 	fmt.Println(arr)
@@ -24,7 +41,11 @@ func main() {
 	fmt.Scan(&searchNumer)
 
 	resultIndex := findIndex(arr, searchNumer)
-	fmt.Println(resultIndex, arr[resultIndex])
+	if resultIndex >= 0 {
+		fmt.Println(resultIndex, arr[resultIndex])
+	} else {
+		fmt.Println("Элемент не найден")
+	}
 }
 
 func findIndex(arr []int, searchNumer int) int {
@@ -37,8 +58,8 @@ func findIndex(arr []int, searchNumer int) int {
 	}
 
 	for {
-		// fmt.Println(left, right, middle)
-		if left == middle || middle == right { //nolint:gocritic
+		log.Info(left, right, middle)
+		if left == middle && middle == right || left == right { //nolint:gocritic
 			return -1
 		} else if arr[middle] == searchNumer {
 			return checkLeftIndex(arr, middle, searchNumer)
