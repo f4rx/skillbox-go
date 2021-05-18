@@ -25,6 +25,7 @@ func main() {
 }
 
 func parseTest(sentences []string, chars []rune) ([][]int, error) {
+	// Вроде это не нужно тут, и так верну пустой слайс
 	if len(sentences) == 0 || len(chars) == 0 {
 		return nil, fmt.Errorf("входные данные - пустые массив") //nolint:goerr113
 	}
@@ -45,6 +46,7 @@ func parseTest(sentences []string, chars []rune) ([][]int, error) {
 }
 
 func getPosition(s string, r rune) int {
+	// https://blog.golang.org/strings#TOC_6.
 	for i, c := range s {
 		if c == r {
 			return i
