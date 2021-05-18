@@ -26,6 +26,7 @@ func main() {
 
 func parseTest(sentences []string, chars []rune) ([][]int, error) {
 	// Вроде это не нужно тут, и так верну пустой слайс
+	// `Не забудьте проверить, что вы получили больше чем 0 аргументов.`
 	if len(sentences) == 0 || len(chars) == 0 {
 		return nil, fmt.Errorf("входные данные - пустые массив") //nolint:goerr113
 	}
