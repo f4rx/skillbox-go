@@ -23,6 +23,13 @@ func main() {
 	fmt.Println(sortBubbleReverse(1, 2, 3))
 	fmt.Println(sortBubbleReverse(3, 2, 1, 0))
 	fmt.Println(sortBubbleReverse())
+	fmt.Printf("%#v\n", sortBubbleReverse())
+
+	_, exists := os.LookupEnv("RESERCH")
+	if exists {
+		reserchSlice()
+	}
+
 }
 
 func sortBubbleReverse(input ...int) []int {
@@ -37,4 +44,23 @@ func sortBubbleReverse(input ...int) []int {
 		}
 	}
 	return input
+}
+
+func reserchSlice() {
+	var a []int = nil
+	var a0 []int = make([]int, 0)
+	var a1 []int
+
+
+	fmt.Println(a == nil)  // true
+	fmt.Println(a0 == nil) // false
+	fmt.Println(len(a)) // 0
+	fmt.Println(len(a0)) // 0
+
+
+	fmt.Printf("a:  %#v\n", a)  // []int(nil)
+	fmt.Printf("a0: %#v\n", a0) // []int{}
+	fmt.Printf("a1: %#v\n", a1) // []int{}
+	fmt.Printf("%#v\n", [...]int{}) // [0]int{}
+	fmt.Printf("%v\n", [...]int{}) // []
 }
