@@ -3,9 +3,8 @@ package main
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
 	logger "github.com/f4rx/logger-zap-wrapper"
-
+	"github.com/stretchr/testify/assert"
 )
 
 func testHander() {
@@ -15,6 +14,7 @@ func testHander() {
 
 func TestSearchSubstring(t *testing.T) {
 	testHander()
+
 	tests := []struct {
 		title        string
 		sourceString string

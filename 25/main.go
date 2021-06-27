@@ -57,7 +57,7 @@ func compareSubstringWithRunes(str1, str2 string) bool {
 	if len(str1) != len(str2) {
 		return false
 	}
-	for i, w := 0, 0; i < len(str1); i += w {
+	for i, w := 0, 0; i < len(str1); i += w { //nolint:wastedassign
 		runeValueFromStr1, width1 := utf8.DecodeRuneInString(str1[i:])
 		runeValueFromStr2, _ := utf8.DecodeRuneInString(str1[i:])
 		if runeValueFromStr1 != runeValueFromStr2 {
