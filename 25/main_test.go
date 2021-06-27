@@ -4,9 +4,17 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	logger "github.com/f4rx/logger-zap-wrapper"
+
 )
 
+func testHander() {
+	slog = logger.NewSugaredLogger()
+	slog.Sync() //nolint:errcheck
+}
+
 func TestSearchSubstring(t *testing.T) {
+	testHander()
 	tests := []struct {
 		title        string
 		sourceString string

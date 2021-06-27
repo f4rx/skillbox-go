@@ -11,12 +11,10 @@ import (
 
 var slog *zap.SugaredLogger //nolint:gochecknoglobals
 
-func init() {
+func main() {
 	slog = logger.NewSugaredLogger()
 	slog.Sync() //nolint:errcheck
-}
 
-func main() {
 	sourceString := flag.String("str", "", "Source string")
 	subString := flag.String("substr", "", "Substring for searc")
 
