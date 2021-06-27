@@ -44,9 +44,7 @@ func searchSubstring(str, substring string) (contains bool) {
 			tmpSubString := str[l : l+len(substring)]
 			slog.Debugw("tmpSubString var", "tmpSubString", tmpSubString)
 
-			contains = compareSubstringWithRunes(tmpSubString, substring)
-
-			if contains {
+			if contains = compareSubstringWithRunes(tmpSubString, substring); contains {
 				return
 			}
 		}
