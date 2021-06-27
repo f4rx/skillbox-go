@@ -35,16 +35,19 @@ func main() {
 	slog.Info("Contains: ", c)
 }
 
-func searchSubstring(str, substring string) (contains bool) {
-	firstRune, size := utf8.DecodeRuneInString(substring)
+func searchSubstring(str, subString string) (contains bool) {
+	firstRune, size := utf8.DecodeRuneInString(subString)
 	slog.Debug(fmt.Sprintf("First rune: %c %v", firstRune, size))
 	for l, r := range str {
 		slog.Debug(fmt.Sprintf("%c %v", r, l))
-		if r == firstRune && l+len(substring) <= len(str) {
-			tmpSubString := str[l : l+len(substring)]
-			slog.Debugw("tmpSubString var", "tmpSubString", tmpSubString)
+		if r == firstRune && l+len(subString) <= len(str) {
+			tmpSubString := str[l : l+len(subString)]
+			slog.Debugw("tmpSubString var",
+				"tmpSubString", tmpSubString,
+				"SubString", subString,
+			)
 
-			if contains = compareSubstringWithRunes(tmpSubString, substring); contains {
+			if contains = compareSubstringWithRunes(tmpSubString, subString); contains {
 				return
 			}
 		}
@@ -57,9 +60,9 @@ func compareSubstringWithRunes(str1, str2 string) bool {
 		return false
 	}
 	for i, w := 0, 0; i < len(str1); i += w {
-		runeValueFromStr, width1 := utf8.DecodeRuneInString(str1[i:])
-		runeValueFromSubString, _ := utf8.DecodeRuneInString(str1[i:])
-		if runeValueFromStr != runeValueFromSubString {
+		runeValueFromStr1, width1 := utf8.DecodeRuneInString(str1[i:])
+		runeValueFromStr2, _ := utf8.DecodeRuneInString(str1[i:])
+		if runeValueFromStr1 != runeValueFromStr2 {
 			return false
 		}
 		w = width1
