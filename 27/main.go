@@ -75,7 +75,7 @@ func (sm studentMap) String() string {
 }
 
 func parseStringToStudent(line string) (*Student, error) {
-	words := strings.Split(strings.TrimSpace(line), " ")
+	words := strings.Split(line, " ")
 	if len(words) != 3 {
 		return nil, ErrorParseInputLine
 	}
@@ -101,14 +101,15 @@ func readStudents(sm studentMap) {
 		if err == io.EOF {
 			break
 		}
+		line = strings.TrimSpace(line)
 		s, err := parseStringToStudent(line)
 		if err != nil {
-			slog.Warn(err)
+			slog.Warn("'", line, "' ", err)
 			continue
 		}
 		err = sm.put(s)
 		if err != nil {
-			slog.Warn(err)
+			slog.Warn("'", s.Name, "' ", err)
 			continue
 		}
 	}
