@@ -1,0 +1,77 @@
+package storage
+
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"os"
+	"sort"
+	"strings"
+
+	"28/pkg/misc"
+	"28/pkg/student"
+)
+
+type StudentMap map[string]*student.Student
+
+func (sm StudentMap) put(student *student.Student) error {
+	if _, ok := sm[student.Name]; ok {
+		return fmt.Errorf("такой студент уже существует в словаре")
+	}
+	sm[student.Name] = student
+	return nil
+}
+
+func (sm StudentMap) get(name string) (*student.Student, error) {
+	if student, ok := sm[name]; ok {
+		return student, nil
+	}
+	return nil, fmt.Errorf("такого пользователя нет в словаре")
+}
+
+func (sm StudentMap) String() string {
+	keys := make([]string, 0, len(sm))
+	for k := range sm {
+		misc.Slog.Debug("key:", k)
+		keys = append(keys, k)
+	}
+	misc.Slog.Debug(keys)
+
+	sort.Strings(keys)
+
+	var sb strings.Builder
+
+	misc.Slog.Debug(keys)
+
+	for _, key := range keys {
+		s, err := sm.get(key)
+		if err != nil {
+			misc.Slog.Panic("Ошибка при работе с ключами")
+		}
+		sb.WriteString(s.String())
+		sb.WriteString("\n")
+	}
+	return sb.String()
+}
+
+func ReadStudents(sm StudentMap) {
+	reader := bufio.NewReader(os.Stdin)
+	for {
+		fmt.Print("Введите через запятую имя студента, возраст, оценку: ")
+		line, err := reader.ReadString('\n')
+		if err == io.EOF {
+			break
+		}
+		line = strings.TrimSpace(line)
+		s, err := student.ParseStringToStudent(line)
+		if err != nil {
+			misc.Slog.Warn("'", line, "' ", err)
+			continue
+		}
+		err = sm.put(s)
+		if err != nil {
+			misc.Slog.Warn("'", s.Name, "' ", err)
+			continue
+		}
+	}
+}
