@@ -1,8 +1,6 @@
 package storage
 
 import (
-	"28/pkg/misc"
-	"28/pkg/student"
 	"bufio"
 	"fmt"
 	"io"
@@ -10,6 +8,9 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+
+	"28/pkg/misc"
+	"28/pkg/student"
 )
 
 var ErrorParseInputLine = fmt.Errorf("ошибка парсинга входящей строки")
