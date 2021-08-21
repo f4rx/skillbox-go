@@ -1,28 +1,35 @@
 package storage
 
 import (
+	"28/pkg/misc"
+	"28/pkg/student"
 	"bufio"
 	"fmt"
 	"io"
 	"os"
 	"sort"
+	"strconv"
 	"strings"
-
-	"28/pkg/misc"
-	"28/pkg/student"
 )
+
+var ErrorParseInputLine = fmt.Errorf("ошибка парсинга входящей строки")
+
+type Storage interface {
+	Put(student *student.Student) error
+	Get(name string) (*student.Student, error)
+}
 
 type StudentMap map[string]*student.Student
 
-func (sm StudentMap) put(student *student.Student) error {
-	if _, ok := sm[student.Name]; ok {
+func (sm StudentMap) Put(student *student.Student) error {
+	if _, ok := sm[student.GetName()]; ok {
 		return fmt.Errorf("такой студент уже существует в словаре")
 	}
-	sm[student.Name] = student
+	sm[student.GetName()] = student
 	return nil
 }
 
-func (sm StudentMap) get(name string) (*student.Student, error) {
+func (sm StudentMap) Get(name string) (*student.Student, error) {
 	if student, ok := sm[name]; ok {
 		return student, nil
 	}
@@ -44,7 +51,7 @@ func (sm StudentMap) String() string {
 	misc.Slog.Debug(keys)
 
 	for _, key := range keys {
-		s, err := sm.get(key)
+		s, err := sm.Get(key)
 		if err != nil {
 			misc.Slog.Panic("Ошибка при работе с ключами")
 		}
@@ -52,6 +59,25 @@ func (sm StudentMap) String() string {
 		sb.WriteString("\n")
 	}
 	return sb.String()
+}
+
+func parseStringToStudent(line string) (*student.Student, error) {
+	words := strings.Split(line, " ")
+	if len(words) != 3 {
+		return nil, ErrorParseInputLine
+	}
+	name := words[0]
+	age, err := strconv.Atoi(words[1])
+	if err != nil {
+		return nil, ErrorParseInputLine
+	}
+	grade, err := strconv.Atoi(words[2])
+	if err != nil {
+		return nil, ErrorParseInputLine
+	}
+
+	student := student.NewStudent(name, age, grade)
+	return student, nil
 }
 
 func ReadStudents(sm StudentMap) {
@@ -63,14 +89,14 @@ func ReadStudents(sm StudentMap) {
 			break
 		}
 		line = strings.TrimSpace(line)
-		s, err := student.ParseStringToStudent(line)
+		s, err := parseStringToStudent(line)
 		if err != nil {
 			misc.Slog.Warn("'", line, "' ", err)
 			continue
 		}
-		err = sm.put(s)
+		err = sm.Put(s)
 		if err != nil {
-			misc.Slog.Warn("'", s.Name, "' ", err)
+			misc.Slog.Warn("'", s.GetName(), "' ", err)
 			continue
 		}
 	}
