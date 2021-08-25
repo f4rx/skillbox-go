@@ -15,6 +15,11 @@ type Storage interface {
 
 type StudentMap map[string]*student.Student
 
+func NewStorage() Storage {
+	var sm StudentMap = make(map[string]*student.Student)
+	return sm
+}
+
 func (sm StudentMap) Put(student *student.Student) error {
 	if _, ok := sm[student.GetName()]; ok {
 		return fmt.Errorf("такой студент уже существует в словаре")

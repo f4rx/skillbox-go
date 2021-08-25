@@ -17,7 +17,8 @@ var ErrorParseInputLine = fmt.Errorf("ошибка парсинга входящ
 func Run(){
 	misc.NewLogger()
 
-	var sm storage.StudentMap = make(map[string]*student.Student)
+	// var sm storage.StudentMap = make(map[string]*student.Student)
+	sm := storage.NewStorage()
 	readStudents(sm)
 
 	fmt.Println()
@@ -44,7 +45,7 @@ func parseStringToStudent(line string) (*student.Student, error) {
 	return student, nil
 }
 
-func readStudents(sm storage.StudentMap) {
+func readStudents(sm storage.Storage) {
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		fmt.Print("Введите через запятую имя студента, возраст, оценку: ")
